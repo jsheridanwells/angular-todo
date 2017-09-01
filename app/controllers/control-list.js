@@ -20,13 +20,23 @@ app.controller("listCtrl", function($scope, todoFactory, userFactory){
     };
 
 
-    const deleteTask = function(){
-
+    $scope.deleteTask = function(id){
+        todoFactory.deleteTask(id)
+        .then(() => {
+            showAllTasks();
+        });
     };
 
-
-    const toggleDoneTask = function(){
-
+    //TODO fix this toggle happens to quick
+    $scope.toggleDoneTask = function(obj){
+        console.log("toggleDoneTask obj", obj);
+        let status = obj.isCompleted ? true : false;
+        let tmpObj = {isCompleted:status};
+        todoFactory.editTask(obj.id, tmpObj)
+        .then(()=>{
+            console.log("toggleDoneTask is updated");
+            showAllTasks();
+        });
     };
 
     showAllTasks();

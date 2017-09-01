@@ -11,14 +11,14 @@
     </div>
 </div>
 
-<div ng-repeat="thingy in tasks | filter: false:isCompleted">
+<div ng-repeat="thingy in tasks | filter: isCompleted: false">
     <div class="panel panel-default" ng-hide="thingy.isCompleted">
         <div class="panel-body">
-            <div class="col-xs-1"><input type="checkbox" ng-model="thingy.isCompleted" ng-change="updateComplete(thingy.id)"/></div>
+            <div class="col-xs-1"><input type="checkbox" ng-model="thingy.isCompleted" ng-change="toggleDoneTask(thingy)"/></div>
              <div class="col-xs-6"><a ng-href="#!/task/{{thingy.id}}">{{ thingy.task }}</a></div>
             <div class="col-xs-2">{{thingy.dueDate}}</div>
             <div class="col-xs-2">{{thingy.assignedTo}}</div>
-            <div class="col-xs-1"><button ng-click="itemDelete(thingy.id)" class="btn btn-danger">X</button></div>
+            <div class="col-xs-1"><button ng-click="deleteTask(thingy.id)" class="btn btn-danger">X</button></div>
         </div>
     </div>
 </div>
@@ -28,11 +28,11 @@
 <div ng-repeat="thingy in tasks | filter: {isCompleted: true}">
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="col-xs-1"><input type="checkbox" ng-model="thingy.isCompleted" ng-change="updateComplete(thingy.id)"/></div>
+            <div class="col-xs-1"><input type="checkbox" ng-model="thingy.isCompleted" ng-change="toggleDoneTask(thingy)"/></div>
             <div class="col-xs-6"><a ng-href="#!/task/{{thingy.id}}">{{thingy.task}}</a></div>
             <div class="col-xs-2">{{thingy.dueDate}}</div>
             <div class="col-xs-2">{{thingy.assignedTo}}</div>
-            <div class="col-xs-1"><button ng-click="itemDelete(thingy.id)" class="btn btn-danger">X</button></div>
+            <div class="col-xs-1"><button ng-click="deleteTask(thingy.id)" class="btn btn-danger">X</button></div>
         </div>
     </div>
 </div>
